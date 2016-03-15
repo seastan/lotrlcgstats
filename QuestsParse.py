@@ -28,13 +28,16 @@ for directory in directories:
                 stats["EnemyTotal"] = stats["EnemyTotal"] + Quantity
                 # Calculate threat
                 Threat = cardObject.get("Threat",0)
-                try:
+                if (Threat.isdigit()): 
                     Threat = int(Threat)
-                except: # in case Threat == 'X' or '-'
-                    Threat = 0
+                else:  # in case Threat == 'X' or '-'
+                    Threat = 0;
                 
                 stats["EnemyThreatTotal"] = stats["EnemyThreatTotal"] + Threat*Quantity
-                stats["EnemyThreatAverage"] = float(stats["EnemyThreatTotal"])/stats["EnemyTotal"]
+        
+        # Calculate averages
+        stats["EnemyThreatAverage"] = float(stats["EnemyThreatTotal"])/stats["EnemyTotal"]
+        # Print
         print o8dfile
         print stats
 
